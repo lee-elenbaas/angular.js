@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * @ngdoc function
- * @name ng.filter:orderBy
+ * @ngdoc filter
+ * @name orderBy
  * @function
  *
  * @description
@@ -22,12 +22,12 @@
  *    - `Array`: An array of function or string predicates. The first predicate in the array
  *      is used for sorting, but when two items are equivalent, the next predicate is used.
  *
- * @param {boolean=} reverse Reverse the order the array.
+ * @param {boolean=} reverse Reverse the order of the array.
  * @returns {Array} Sorted copy of the source array.
  *
  * @example
-   <doc:example>
-     <doc:source>
+   <example>
+     <file name="index.html">
        <script>
          function Ctrl($scope) {
            $scope.friends =
@@ -57,8 +57,8 @@
            </tr>
          </table>
        </div>
-     </doc:source>
-   </doc:example>
+     </file>
+   </example>
  */
 orderByFilter.$inject = ['$parse'];
 function orderByFilter($parse){
@@ -74,6 +74,12 @@ function orderByFilter($parse){
           predicate = predicate.substring(1);
         }
         get = $parse(predicate);
+        if (get.constant) {
+          var key = get();
+          return reverseComparator(function(a,b) {
+            return compare(a[key], b[key]);
+          }, descending);
+        }
       }
       return reverseComparator(function(a,b){
         return compare(get(a),get(b));

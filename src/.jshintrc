@@ -64,6 +64,7 @@
     "isWindow": false,
     "isScope": false,
     "isFile": false,
+    "isBlob": false,
     "isBoolean": false,
     "trim": false,
     "isElement": false,
@@ -100,6 +101,9 @@
     "assertNotHasOwnProperty": false,
     "getter": false,
     "getBlockElements": false,
+
+    /* filters.js */
+    "getFirstThursdayOfYear": false,
 
     /* AngularPublic.js */
     "version": false,
