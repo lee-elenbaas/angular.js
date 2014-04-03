@@ -664,8 +664,11 @@ function createInjector(modulesToLoad) {
         orig$get = origProvider.$get;
 
     origProvider.$get = function() {
-      var origInstance = instanceInjector.invoke(orig$get, origProvider);
-      return instanceInjector.invoke(decorFn, null, {$delegate: origInstance});
+      var locals;
+      if (includes(annotate(decorFn), '$delegate')) {
+        locals = {$delegate: instanceInjector.invoke(orig$get, origProvider)};
+      }
+      return instanceInjector.invoke(decorFn, null, locals);
     };
   }
 
