@@ -578,7 +578,7 @@ describe('injector', function() {
               log.push('myService:original');
               
               return 'original';
-            }]);
+            });
 
             $provide.decorator('myService', function() {
               log.push('myService:decorated');

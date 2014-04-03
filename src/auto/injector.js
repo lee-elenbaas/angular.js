@@ -573,7 +573,7 @@ function annotate(fn) {
  *    Local injection arguments:
  *
  *    * `$delegate` - The original service instance, which can be monkey patched, configured,
- *      decorated or delegated to.
+ *      decorated or delegated to. (Without explicit dependency in $delegate this instance will not be created)
  *
  * @example
  * Here we decorate the {@link ng.$log $log} service to convert warnings to errors by intercepting
